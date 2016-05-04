@@ -49,7 +49,7 @@ var Z = new function(v) {
 			for (var k in values) {
 				url += k + "=" + values[k] + "&";
 			}
-			if (k.length > 1) {
+			if (values.length > 1) {
 				url = url.slice(0, -1);
 			}
 		}
