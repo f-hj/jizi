@@ -10,7 +10,7 @@ var Z = new function(v) {
 
 	this.get = function(url, values, good, bad) {
 		var xhttp = new XMLHttpRequest();
-		if (values && values[0]) {
+		if (values) {
 			url += "?";
 			url += get_val(values);
 		}
@@ -45,9 +45,9 @@ var Z = new function(v) {
 	var get_val = function(values) {
 		var url = "";
 
-		if (values && values[0]) {
+		if (values) {
 			for (var k in values) {
-				w += k + "=" + values[k] + "&";
+				url += k + "=" + values[k] + "&";
 			}
 			if (k.length > 1) {
 				url = url.slice(0, -1);
