@@ -8,27 +8,37 @@ var Z = new function(v) {
 		}
 	}
 
-	this.get = function(url, values, callback) {
+	this.get = function(url, values, good, bad) {
+		var xhttp = new XMLHttpRequest();
 		if (values && values[0]) {
 			url += "?";
 			url += get_val(values);
 		}
 		xhttp.onreadystatechange = function() {
 			if (xhttp.readyState == 4 && xhttp.status == 200) {
-				callback(JSON.parse(xhttp.responseText));
+				good(xhttp.responseText);
+			} else if (xhttp.readyState == 4) {
+				if (bad) {
+					bad(xhttp);
+				}
 			}
 		}
-		xhttp.open("GET", url, false);
+		xhttp.open("GET", url, true);
 		xhttp.send();
 	}
 
-	this.post = function(url, values, callback) {
+	this.post = function(url, values, good, bad) {
+		var xhttp = new XMLHttpRequest();
 		xhttp.onreadystatechange = function() {
 			if (xhttp.readyState == 4 && xhttp.status == 200) {
-				callback(JSON.parse(xhttp.responseText));
+				good(xhttp.responseText);
+			} else if (xhttp.readyState == 4) {
+				if (bad) {
+					bad(xhttp);
+				}
 			}
 		}
-		xhttp.open("GET", url, false);
+		xhttp.open("GET", url, true);
 		xhttp.send(get_val(values));
 	}
 
