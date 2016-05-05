@@ -12,6 +12,10 @@ var Z = new function(v) {
 		return document.getElementById(id);
 	}
 
+	this.class = function(c) {
+		return document.getElementsByClassName(c);
+	}
+
 	this.get = function(url, values, good, bad) {
 		var xhttp = new XMLHttpRequest();
 		if (values) {
