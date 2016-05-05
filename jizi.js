@@ -8,6 +8,10 @@ var Z = new function(v) {
 		}
 	}
 
+	this.id = function(id) {
+		return document.getElementById(id);
+	}
+
 	this.get = function(url, values, good, bad) {
 		var xhttp = new XMLHttpRequest();
 		if (values) {
