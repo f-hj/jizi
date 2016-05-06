@@ -46,7 +46,7 @@ var Z = new function(v) {
 				}
 			}
 		}
-		xhttp.open("GET", url, true);
+		xhttp.open("POST", url, true);
 		xhttp.send(get_val(values));
 	}
 
