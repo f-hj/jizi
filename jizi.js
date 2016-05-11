@@ -24,7 +24,9 @@ var Z = new function(v) {
 		}
 		xhttp.onreadystatechange = function() {
 			if (xhttp.readyState == 4 && xhttp.status == 200) {
-				good(xhttp.responseText);
+				if (good) {
+					good(xhttp.responseText);
+				}
 			} else if (xhttp.readyState == 4) {
 				if (bad) {
 					bad(xhttp);
@@ -39,7 +41,9 @@ var Z = new function(v) {
 		var xhttp = new XMLHttpRequest();
 		xhttp.onreadystatechange = function() {
 			if (xhttp.readyState == 4 && xhttp.status == 200) {
-				good(xhttp.responseText);
+				if (good) {
+					good(xhttp.responseText);
+				}
 			} else if (xhttp.readyState == 4) {
 				if (bad) {
 					bad(xhttp);
@@ -49,6 +53,19 @@ var Z = new function(v) {
 		xhttp.open("POST", url, true);
 		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		xhttp.send(get_val(values));
+	}
+
+	this.getVal = function() {
+		var vars = {};
+
+		window.location.href.replace(location.hash, '' ).replace(
+			/[?&]+([^=&]+)=?([^&]*)?/gi,
+			function(m, key, value) {
+				vars[key] = value !== undefined ? value : '';
+			}
+		);
+
+		return vars;
 	}
 
 	var get_val = function(values) {
